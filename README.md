@@ -6,16 +6,20 @@ Ordnerstruktur: `/opt/www/$user`
 
 
 add
-    include=/opt/www/*/php-fpm-pool.conf
-to `/etc/php5/fpm/php-fpm.conf`
+```
+include=/opt/www/*/php-fpm-pool.conf
+```
+o `/etc/php5/fpm/php-fpm.conf`
 
 
 add
-    http {
-        [...]
-        include=/opt/www/*/php-fpm-pool.conf
-        [...]
-    }
+```
+http {
+    [...]
+    include=/opt/www/*/php-fpm-pool.conf
+    [...]
+}
+```
 to `/etc/nginx/nginx.conf`
 
 
