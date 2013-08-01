@@ -15,12 +15,12 @@ include=/opt/www/*/php-fpm-pool.conf
 * add `include=/opt/www/*/php-fpm-pool.conf` in the http block of `/etc/nginx/nginx.conf`
 ```
 http {
-    [...]
-    include=/opt/www/*/php-fpm-pool.conf
-    [...]
+        [...]
+        include=/opt/www/*/php-fpm-pool.conf
+        [...]
 }
 ```
-* copy the `Template` folder to `/opt/www/`
+* copy the `TEMPLATE` folder to `/opt/www/`
 
 
 
