@@ -4,6 +4,7 @@
 Ordnerstruktur: `/opt/www/$user`
 
 
+### One-time config:
 
 add the next line at the end of `/etc/php5/fpm/php-fpm.conf`
 ```
@@ -23,10 +24,12 @@ http {
 
 
 
-create a user/site: 
-* `addsftpuser.sh $user`
+### create a user/site:
+
+* `sudo ./addsftpuser.sh $user`
 * restart nginx and php-fpm
 * `passwd $user` to enable login [optional]
+
 
 
 edit domains in `/opt/www/$user/nginx-server.conf`
