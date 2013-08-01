@@ -1,4 +1,4 @@
-# NGINX and PHP-FPM
+## NGINX and PHP-FPM
 
 
 Ordnerstruktur: `/opt/www/$user`
@@ -12,7 +12,7 @@ include=/opt/www/*/php-fpm-pool.conf
 ```
 
 
-add `to `/etc/nginx/nginx.conf` in the http block of `/etc/nginx/nginx.conf`
+add `/etc/nginx/nginx.conf` in the http block of `/etc/nginx/nginx.conf`
 ```
 http {
     [...]
