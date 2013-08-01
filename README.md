@@ -5,14 +5,13 @@ Ordnerstruktur: `/opt/www/$user`
 
 
 
-add
+add the next line at the end of `/etc/php5/fpm/php-fpm.conf`
 ```
 include=/opt/www/*/php-fpm-pool.conf
 ```
-o `/etc/php5/fpm/php-fpm.conf`
 
 
-add
+add `to `/etc/nginx/nginx.conf` in the http block of `/etc/nginx/nginx.conf`
 ```
 http {
     [...]
@@ -20,7 +19,7 @@ http {
     [...]
 }
 ```
-to `/etc/nginx/nginx.conf`
+
 
 
 
@@ -30,7 +29,9 @@ create a user/site:
 * `passwd $user` to enable login [optional]
 
 
-add Domains in `/opt/www/user/`
-    [...]
-    server_name $user.de www.$user.de;
-    [...]
+edit domains in `/opt/www/$user/nginx-server.conf`
+```
+[...]
+server_name $user.de www.$user.de;
+[...]
+```
