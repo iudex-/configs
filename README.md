@@ -12,11 +12,11 @@ include=/opt/www/*/php-fpm-pool.conf
 ```
 
 
-* add `include=/opt/www/*/php-fpm-pool.conf` in the http block of `/etc/nginx/nginx.conf`
+* add `include /opt/www/*/nginx-server.conf;` in the http block of `/etc/nginx/nginx.conf`
 ```
 http {
         [...]
-        include=/opt/www/*/php-fpm-pool.conf
+        include /opt/www/*/nginx-server.conf;
         [...]
 }
 ```
