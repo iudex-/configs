@@ -1,8 +1,8 @@
 server {
 	listen 80;
 
-	listen 443 ssl; # disable ssl
-	ssl off;        # on non-ssl sites
+	##listen 443 ssl; # disable ssl
+	##ssl off;        # on non-ssl sites
 
 	root /opt/www/§§USER§§/www;
 	index index.php index.html index.htm;
@@ -11,12 +11,14 @@ server {
 	access_log /opt/www/§§USER§§/nginx-access.log combined;
 	error_log  /opt/www/§§USER§§/nginx-erorr.log  warn;
 
-	## wordress handles routing by itself
-	if (!-e $request_filename) {
-		rewrite ^(.+)$ /index.php?q=$1 last;
-	}
+	#### wordress handles routing by itself
+	#if (!-e $request_filename) {
+	#	rewrite ^(.+)$ /index.php?q=$1 last;
+	#}
 
 	location / {
+		## no idea why an empty block works...
+
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
 		#try_files $uri $uri/ /index.html;

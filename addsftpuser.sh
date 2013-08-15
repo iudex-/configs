@@ -26,10 +26,17 @@ if (id $1 > /dev/null); then
 	touch php-fpm-error.log nginx-erorr.log nginx-access.log
 	mkdir tmp
 	chown -R $1:sftpusers ./
-	mkdir -p usr/share
+	
+	mkdir -p usr/share	# copy time related stuff
 	mkdir etc
 	cp /etc/localtime ./etc/
 	cp -R /usr/share/zoneinfo/ ./usr/share/zoneinfo/
+	
+	mkdir -p lib/x86_64-linux-gnu	# copy dns stuff
+	cp /lib/x86_64-linux-gnu/libnss_dns.so.2 lib/x86_64
+	cp /etc/resolv.conf etc/
+	cp /etc/nsswitch.conf etc/
+
 	cp ../TEMPLATE/* ./	
 	mv nginx-server.conf- nginx-server.conf
 	mv php-fpm-pool.conf- php-fpm-pool.conf
