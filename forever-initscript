@@ -1,5 +1,15 @@
 #!/bin/bash
 #
+################################################################
+#
+#  Enable script:
+#
+#      sudo update-rc.d <scriptname> defaults
+#      sudo update-rc.d <scriptname> enable
+#      sudo /etc/init.d/<scriptname> start
+#
+################################################################
+#
 # An example init script for running a Node.js process as a service
 # using Forever as the process monitor. For more configuration options
 # associated with Forever, see: https://github.com/nodejitsu/forever
