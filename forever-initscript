@@ -82,6 +82,10 @@ LOGFILE=/home/iudex/www/whiteboard/logs/w.log
 OUTFILE=/home/iudex/www/whiteboard/logs/w.out
 ERRFILE=/home/iudex/www/whiteboard/logs/w.err 
 
+#forever="FOREVER_ROOT=/etc/forever forever"
+forever="forever"
+
+
 # Add node to the path for situations in which the environment is passed.
 PATH=$NODE_BIN_DIR:$PATH
 # Export all environment variables that must be visible for the Node.js
@@ -111,7 +115,7 @@ start() {
 	if [ -f $PIDFILE ]; then
 		echo -e "\n\e[1;31mAbort!\e[0;31m Server \"$NAME\" already running!\e[0m\n       pidfile: $PIDFILE";
 	else 
-    	su - $RUN_AS_USER -c "export NODE_ENV=production; cd $APPLICATION_DIRECTORY ; forever --uid "$NAME" --pidFile $PIDFILE --sourceDir $APPLICATION_DIRECTORY \
+    	su - $RUN_AS_USER -c "export NODE_ENV=production; cd $APPLICATION_DIRECTORY ; $forever --uid "$NAME" --pidFile $PIDFILE --sourceDir $APPLICATION_DIRECTORY \
         -s -a -n 0 -l $LOGFILE -o $OUTFILE -e $ERRFILE --minUptime 5000 --spinSleepTime 2000 \
         start $APPLICATION_START &"
 		echo -e "\n\e[32mStarted!\e[0m"
@@ -126,7 +130,7 @@ stop() {
         # Tell Forever to stop the process. Note that doing it this way means
         # that each application that runs as a service must have a different
         # start file name, regardless of which directory it is in.
-        su - $RUN_AS_USER -c "forever --sourceDir $APPLICATION_DIRECTORY  stop $NAME"
+        su - $RUN_AS_USER -c "$forever --sourceDir $APPLICATION_DIRECTORY  stop $NAME"
         # Get rid of the pidfile, since Forever won't do that.
         rm -f $PIDFILE
         RETVAL=$?
@@ -151,8 +155,8 @@ status() {
     # On Ubuntu, this isn't even necessary. To find out whether the service is
     # running, use "service my-application status" which bypasses this script
     # entirely provided you used the service utility to start the process.
-	forever list -p $APPLICATION_DIRECTORY 
-    RETVAL=$?
+    su $RUN_AS_USER -c "$forever list -p $APPLICATION_DIRECTORY"
+	RETVAL=$?
 }
  
 case "$1" in
